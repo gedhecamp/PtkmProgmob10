@@ -53,6 +53,14 @@ public class SkpAdapter extends RecyclerView.Adapter<SkpAdapter.MyViewHolder>{
         return 0;
     }
 
+    public List<Skp> getSkpList() {
+        return skpList;
+    }
+
+    public void setSkpList(List<Skp> skpList) {
+        this.skpList = skpList;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView tvNama, tvKategori, tvPoint;
 //        private ImageView mImage;

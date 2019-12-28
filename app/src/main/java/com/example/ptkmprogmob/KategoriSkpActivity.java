@@ -46,6 +46,12 @@ public class KategoriSkpActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Kategori SKP");
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     private void listSkp(){
         RetrofitClient.getClient(UtilsApi.BASE_URL_API)
                 .create(BaseApiService.class)
