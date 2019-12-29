@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 public class HomeFragment extends Fragment {
 
     FloatingActionButton fabSkp;
-    CardView cvMinatBakat;
+    CardView cvMinatBakat, cvOrganisasi, cvPM, cvIlmiah, cvPartisipan, cvKepanitiaan;
 
     @Nullable
     @Override
@@ -25,6 +25,11 @@ public class HomeFragment extends Fragment {
 
         fabSkp = view.findViewById(R.id.floatingActionButtonSkp);
         cvMinatBakat = view.findViewById(R.id.cvMinatBakat);
+        cvOrganisasi = view.findViewById(R.id.cvOrganisasi);
+        cvPM = view.findViewById(R.id.cvPm);
+        cvIlmiah = view.findViewById(R.id.cvIlmiah);
+        cvPartisipan = view.findViewById(R.id.cvPartisipan);
+        cvKepanitiaan = view.findViewById(R.id.cvKepanitiaan);
 
         fabSkp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +43,52 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), KategoriSkpActivity.class);
+                intent.putExtra("kategori","Minat dan Bakat");
+                startActivity(intent);
+            }
+        });
+
+        cvOrganisasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), KategoriSkpActivity.class);
+                intent.putExtra("kategori","Organisasi");
+                startActivity(intent);
+            }
+        });
+
+        cvPM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), KategoriSkpActivity.class);
+                intent.putExtra("kategori","Pengabdian Masyarakat");
+                startActivity(intent);
+            }
+        });
+
+        cvIlmiah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), KategoriSkpActivity.class);
+                intent.putExtra("kategori","Penalaran dan Ilmiah");
+                startActivity(intent);
+            }
+        });
+
+        cvPartisipan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), KategoriSkpActivity.class);
+                intent.putExtra("kategori","Partisipan");
+                startActivity(intent);
+            }
+        });
+
+        cvKepanitiaan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), KategoriSkpActivity.class);
+                intent.putExtra("kategori","Kepanitiaan");
                 startActivity(intent);
             }
         });

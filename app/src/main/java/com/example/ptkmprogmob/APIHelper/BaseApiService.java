@@ -18,6 +18,7 @@ import retrofit2.http.POST;
 import retrofit2.http.GET;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 
 public interface BaseApiService {
     // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/login.php
@@ -63,8 +64,19 @@ public interface BaseApiService {
             @PartMap Map<String, RequestBody> text);
 
     // Fungsi ini untuk memanggil
-    @GET("skp")
-    Call<List<Skp>> listSkp();
+    @Multipart
+    @POST("updateSkp")
+    Call<ResponseBody> updateSkp(
+            @Part MultipartBody.Part image,
+            @PartMap Map<String, RequestBody> text);
+
+    @GET("deleteSkp")
+    Call<ResponseBody> deleteSkp(
+            @Query("id_skp1") String id_skp1);
+
+    // Fungsi ini untuk memanggil
+    @GET("kategori")
+    Call<List<Skp>> skpList(@Query("kategori") String kategori,@Query("id_user") String id_user);
 
     // Fungsi ini untuk memanggil
     @Multipart
@@ -72,6 +84,17 @@ public interface BaseApiService {
     Call<ResponseBody> createKegiatan(
             @Part MultipartBody.Part image,
             @PartMap Map<String, RequestBody> text);
+
+    // Fungsi ini untuk memanggil
+    @Multipart
+    @POST("updateKegiatan")
+    Call<ResponseBody> updateKegiatan(
+            @Part MultipartBody.Part image,
+            @PartMap Map<String, RequestBody> text);
+
+    @GET("deleteKegiatan")
+    Call<ResponseBody> deleteKegiatan(
+            @Query("id_kegiatan") String id_kegiatan);
 
     // Fungsi ini untuk memanggil
     @GET("kegiatan")

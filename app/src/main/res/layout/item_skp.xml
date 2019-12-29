@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvSkp"
         android:layout_width="0dp"
         android:layout_height="145dp"
         android:layout_marginStart="16dp"
@@ -81,17 +82,17 @@
                 app:srcCompat="@color/colorAccent" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/ivEditSkp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView9"
+                app:layout_constraintEnd_toStartOf="@+id/ivDeleteSkp"
                 app:layout_constraintTop_toTopOf="@+id/imageView7"
                 app:srcCompat="@drawable/ic_create_white" />
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/ivDeleteSkp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"

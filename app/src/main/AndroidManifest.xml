@@ -4,8 +4,8 @@
     package="com.example.ptkmprogmob">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <dist:module dist:instant="true" />
 
@@ -16,23 +16,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DetailSkpActivity"
+            android:theme="@style/ActionBar" ></activity>
         <activity
             android:name=".CreateKegiatanActivity"
-            android:theme="@style/ActionBar">
-        </activity>
-        <activity
-            android:name=".EditAccountActivity"
-            android:theme="@style/ActionBar">
-        </activity>
-        <activity
-            android:name=".CreateSkpActivity"
             android:theme="@style/ActionBar"></activity>
         <activity
+            android:name=".UpdateKegiatanActivity"
+            android:theme="@style/ActionBar"></activity>
+        <activity
+            android:name=".EditAccountActivity"
+            android:theme="@style/ActionBar"></activity>
+        <activity
+            android:name=".CreateSkpActivity"
+            android:theme="@style/ActionBar" />
+        <activity
+            android:name=".UpdateSkpActivity"
+            android:theme="@style/ActionBar" />
+        <activity
             android:name=".KategoriSkpActivity"
-            android:theme="@style/ActionBar"/>
+            android:theme="@style/ActionBar" />
         <activity
             android:name=".DetailKegiatanActivity"
-            android:theme="@style/ActionBar"/>
+            android:theme="@style/ActionBar" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +48,7 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/ActionBar"/>
+            android:theme="@style/ActionBar" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
 
