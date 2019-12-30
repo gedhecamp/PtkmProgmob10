@@ -83,6 +83,15 @@ public class KategoriSkpActivity extends AppCompatActivity {
                         skpList.clear();
                         try {
                             skpList.addAll(response.body());
+
+                            DBHelper dbHelper = new DBHelper(mContext);
+                            dbHelper.deleteSkp();
+
+                            for (Skp skp:skpList){
+                                dbHelper.insertSkp(skp.getId_skp(), skp.getNamaSkp(), skp.getTgl_awal(), skp.getTgl_akhir(), skp.getTempat_skp(),
+                                        skp.getBukti_skp(), skp.getIsVerifed(), skp.getId_detail(), skp.getId_user(), skp.getKategoriSkp(), skp.getTingkatSkp(), skp.getKeteranganSkp(), skp.getPointSkp());
+                            }
+
                             setRecycler();
                         } catch (Exception e) {
                             Log.e("error", e.getMessage());
@@ -91,10 +100,18 @@ public class KategoriSkpActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Skp>> call, Throwable t) {
-                        Toast.makeText(mContext, "error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Offline Mode", Toast.LENGTH_SHORT).show();
+                        callFavoriteLocal();
 
                     }
                 });
+    }
+
+    private void callFavoriteLocal() {
+        DBHelper dbHelper = new DBHelper(mContext);
+        skpList = dbHelper.selectSkp();
+
+        setRecycler();
     }
 
 }

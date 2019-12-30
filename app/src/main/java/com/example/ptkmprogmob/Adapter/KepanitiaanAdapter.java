@@ -20,7 +20,9 @@ import com.example.ptkmprogmob.DetailKegiatanActivity;
 import com.example.ptkmprogmob.Model.Kepanitiaan;
 import com.example.ptkmprogmob.R;
 import com.example.ptkmprogmob.UpdateKegiatanActivity;
+import com.example.ptkmprogmob.UserSessionManager;
 
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,9 @@ public class KepanitiaanAdapter extends RecyclerView.Adapter<KepanitiaanAdapter.
     private LayoutInflater inflater;
     Kepanitiaan kepanitiaan;
     String id_kegiatan="";
+
+    String type_user="";
+    UserSessionManager session;
 
     public KepanitiaanAdapter(Context context, List<Kepanitiaan> kepanitiaanList) {
         this.context = context;
@@ -60,6 +65,18 @@ public class KepanitiaanAdapter extends RecyclerView.Adapter<KepanitiaanAdapter.
                 .placeholder(R.drawable.blank)
                 .into(holder.imageKegiatan);
         Log.e("gg", kepanitiaan.getImage_kegiatan());
+
+        session = new UserSessionManager(context);
+        HashMap<String, String> user = session.getUserDetails();
+        type_user = user.get(UserSessionManager.KEY_TYPE);
+
+        if (type_user.equals("1")){
+            holder.editKegiatan.setVisibility(View.VISIBLE);
+            holder.deleteKegiatan.setVisibility(View.VISIBLE);
+        } else {
+            holder.editKegiatan.setVisibility(View.GONE);
+            holder.deleteKegiatan.setVisibility(View.GONE);
+        }
 
         holder.namaKegiatan.setText(kepanitiaan.getNama_kegiatan());
         holder.descKegiatan.setText(kepanitiaan.getDesc_kegiatan());

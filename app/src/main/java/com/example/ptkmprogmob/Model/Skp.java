@@ -1,5 +1,7 @@
 package com.example.ptkmprogmob.Model;
 
+import android.provider.BaseColumns;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Skp {
@@ -151,5 +153,22 @@ public class Skp {
 
     public void setPointSkp(String pointSkp) {
         this.pointSkp = pointSkp;
+    }
+
+    public class Entry implements BaseColumns {
+        public static final String TABLE_NAME="skp";
+        public static final String COLUMN_ID="id_skp1";
+        public static final String COLUMN_NAMA_SKP="nama";
+        public static final String COLUMN_TGL_AWAL="tgl_awal";
+        public static final String COLUMN_TGL_AKHIR="tgl_akhir";
+        public static final String COLUMN_TEMPAT_SKP="tempat";
+        public static final String COLUMN_BUKTI_SKP="bukti_skp";
+        public static final String COLUMN_ISVERIVED="isVerifed";
+        public static final String COLUMN_ID_DETAIL="id_detail";
+        public static final String COLUMN_ID_USER="id_user";
+        public static final String COLUMN_KATEGORI_SKP="kategori";
+        public static final String COLUMN_TINGKAT_SKP="tingkat";
+        public static final String COLUMN_KETERANGAN_SKP="keterangan";
+        public static final String COLUMN_POINT_SKP="point";
     }
 }

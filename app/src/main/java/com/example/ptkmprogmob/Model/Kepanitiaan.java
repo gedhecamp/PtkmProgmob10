@@ -1,5 +1,7 @@
 package com.example.ptkmprogmob.Model;
 
+import android.provider.BaseColumns;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Kepanitiaan {
@@ -74,5 +76,15 @@ public class Kepanitiaan {
 
     public void setImage_kegiatan(String image_kegiatan) {
         this.image_kegiatan = image_kegiatan;
+    }
+
+    public class Entry implements BaseColumns {
+        public static final String TABLE_NAME="kegiatan";
+        public static final String COLUMN_ID="id_kegiatan";
+        public static final String COLUMN_NAMA_KEGIATAN="nama_kegiatan";
+        public static final String COLUMN_TANGGAL_KEGIATAN="tanggal_kegiatan";
+        public static final String COLUMN_TEMPAT_KEGIATAN="tempat_kegiatan";
+        public static final String COLUMN_DESC_KEGIATAN="desc_kegiatan";
+        public static final String COLUMN_IMAGE_KEGIATAN="image_kegiatan";
     }
 }

@@ -38,6 +38,7 @@ public class SkpAdapter extends RecyclerView.Adapter<SkpAdapter.MyViewHolder>{
     private LayoutInflater inflater;
     Skp skp;
     String id_skp1="";
+    String isVerifed="";
 
     public SkpAdapter(Context context, List<Skp> skpList) {
         this.context = context;
@@ -59,6 +60,16 @@ public class SkpAdapter extends RecyclerView.Adapter<SkpAdapter.MyViewHolder>{
         holder.namaSkp.setText(getSkpList().get(position).getNamaSkp());
         holder.kategoriSkp.setText(skp.getKategoriSkp());
         holder.pointSkp.setText(skp.getPointSkp());
+
+        isVerifed = getSkpList().get(position).getIsVerifed();
+
+        if (isVerifed.equals("1")){
+            holder.tvVerifed.setVisibility(View.VISIBLE);
+            holder.ivVerifed.setVisibility(View.VISIBLE);
+        } else {
+            holder.tvVerifed.setVisibility(View.GONE);
+            holder.ivVerifed.setVisibility(View.GONE);
+        }
 
         holder.cvSkp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,8 +151,8 @@ public class SkpAdapter extends RecyclerView.Adapter<SkpAdapter.MyViewHolder>{
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView namaSkp, kategoriSkp, pointSkp;
-        private ImageView editSkp, deleteSkp;
+        private TextView namaSkp, kategoriSkp, pointSkp, tvVerifed;
+        private ImageView editSkp, deleteSkp, ivVerifed;
         private CardView cvSkp;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -152,7 +163,8 @@ public class SkpAdapter extends RecyclerView.Adapter<SkpAdapter.MyViewHolder>{
             namaSkp = itemView.findViewById(R.id.tvNamaSkp);
             kategoriSkp = itemView.findViewById(R.id.tvKategori);
             pointSkp = itemView.findViewById(R.id.tvPoint);
-
+            tvVerifed = itemView.findViewById(R.id.tvVerified);
+            ivVerifed = itemView.findViewById(R.id.ivVerifed);
 
         }
     }

@@ -91,7 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                                     final String nama = jsonRESULTS.getJSONObject("user").getString("name");
                                     final String email = jsonRESULTS.getJSONObject("user").getString("email");
                                     final String phone = jsonRESULTS.getJSONObject("user").getString("phone");
-                                    session.createUserLoginSession(id, nim, nama, email, phone);
+                                    final String type_user = jsonRESULTS.getJSONObject("user").getString("type_user");
+                                    session.createUserLoginSession(id, nim, nama, email, phone, type_user);
 //                                    int id = jsonRESULTS.getJSONObject("user").getInt("id");
 //                                    Log.d("debug","id : "+id);
                                     Intent intent = new Intent(mContext, MainActivity.class);

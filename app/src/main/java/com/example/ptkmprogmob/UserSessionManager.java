@@ -33,6 +33,7 @@ public class UserSessionManager {
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PHONE = "phone";
+    public static final String KEY_TYPE = "type_user";
 
     // Constructor
     public UserSessionManager(Context context){
@@ -42,7 +43,7 @@ public class UserSessionManager {
     }
 
     //Create login session
-    public void createUserLoginSession(String id, String nim, String name, String email, String phone){
+    public void createUserLoginSession(String id, String nim, String name, String email, String phone, String type_user){
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
@@ -52,6 +53,7 @@ public class UserSessionManager {
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PHONE, phone);
+        editor.putString(KEY_TYPE, type_user);
 
 
         // commit changes
@@ -90,6 +92,7 @@ public class UserSessionManager {
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         user.put(KEY_PHONE, pref.getString(KEY_PHONE, null));
+        user.put(KEY_TYPE, pref.getString(KEY_TYPE, null));
 
         // user email id
 //        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));

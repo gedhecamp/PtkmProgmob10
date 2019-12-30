@@ -1,6 +1,7 @@
 package com.example.ptkmprogmob.APIHelper;
 
 import com.example.ptkmprogmob.Model.DetailSkp;
+import com.example.ptkmprogmob.Model.Home;
 import com.example.ptkmprogmob.Model.Kepanitiaan;
 import com.example.ptkmprogmob.Model.Skp;
 
@@ -35,7 +36,8 @@ public interface BaseApiService {
                                        @Field("email") String email,
                                        @Field("phone") String phone,
                                        @Field("password") String password,
-                                       @Field("c_password") String cpassword);
+                                       @Field("c_password") String cpassword,
+                                    @Field("fcm_token") String fcmToken);
 
 
     // Fungsi detail user profile
@@ -74,6 +76,10 @@ public interface BaseApiService {
     Call<ResponseBody> deleteSkp(
             @Query("id_skp1") String id_skp1);
 
+    @GET("validasiSkp")
+    Call<ResponseBody> validasiSkp(
+            @Query("id_skp1") String id_skp1);
+
     // Fungsi ini untuk memanggil
     @GET("kategori")
     Call<List<Skp>> skpList(@Query("kategori") String kategori,@Query("id_user") String id_user);
@@ -99,4 +105,12 @@ public interface BaseApiService {
     // Fungsi ini untuk memanggil
     @GET("kegiatan")
     Call<List<Kepanitiaan>> listKegiatan();
+
+    // Fungsi ini untuk memanggil
+    @GET("countKategori")
+    Call<List<Home>> countKategori(@Query("kategori") String kategori,@Query("id_user") String id_user);
+
+    @GET("countSkp")
+    Call<List<Home>> countSkp(
+            @Query("id_user") String id_user);
 }

@@ -1,5 +1,7 @@
 package com.example.ptkmprogmob.Model;
 
+import android.provider.BaseColumns;
+
 import com.google.gson.annotations.SerializedName;
 
 public class DetailSkp {
@@ -63,5 +65,14 @@ public class DetailSkp {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public class Entry implements BaseColumns {
+        public static final String TABLE_NAME="detailSkp";
+        public static final String COLUMN_ID="id_detail_skp";
+        public static final String COLUMN_KATEGORI="kategori";
+        public static final String COLUMN_TINGKAT="tingkat";
+        public static final String COLUMN_KETERANGAN="keterangan";
+        public static final String COLUMN_POINT="point";
     }
 }

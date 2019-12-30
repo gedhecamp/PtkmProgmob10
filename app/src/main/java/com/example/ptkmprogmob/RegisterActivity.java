@@ -1,5 +1,6 @@
 package com.example.ptkmprogmob;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -19,6 +20,10 @@ import android.widget.Toast;
 
 import com.example.ptkmprogmob.APIHelper.BaseApiService;
 import com.example.ptkmprogmob.APIHelper.UtilsApi;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     Context mContext;
     BaseApiService mApiService;
+    String fcmToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +79,21 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loading = ProgressDialog.show(mContext, null, "Harap Tunggu...", true, false);
-                requestRegister();
+                FirebaseInstanceId.getInstance().getInstanceId()
+                        .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                if (!task.isSuccessful()) {
+                                    Log.w("TOKEN", "getInstanceId failed", task.getException());
+                                    return;
+                                }
+                                fcmToken = task.getResult().getToken();
+                                requestRegister(fcmToken);
+                                // Get new Instance ID token
+
+                                Log.e("token", fcmToken);
+                            }
+                        });
             }
         });
 
@@ -86,13 +106,14 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void requestRegister(){
+    private void requestRegister(String fcmToken){
         mApiService.registerRequest(etNim.getText().toString(),
                 etNama.getText().toString(),
                 etEmail.getText().toString(),
                 etPhone.getText().toString(),
                 etPassword.getText().toString(),
-                etCpassword.getText().toString())
+                etCpassword.getText().toString(),
+                fcmToken)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

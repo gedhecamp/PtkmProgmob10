@@ -1,5 +1,6 @@
 package com.example.ptkmprogmob;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.example.ptkmprogmob.Model.Kepanitiaan;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,9 @@ public class NewsFragment extends Fragment {
     List<Kepanitiaan> kepanitiaanList = new ArrayList<Kepanitiaan>();
     View rootView;
 
+    String type_user="";
+    UserSessionManager session;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +53,20 @@ public class NewsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+
+        session = new UserSessionManager(getContext());
+        HashMap<String, String> user = session.getUserDetails();
+        type_user = user.get(UserSessionManager.KEY_TYPE);
+        Log.e("error", type_user);
+
+        if (type_user.equals("1")){
+            fabKegiatan.show();
+        } else {
+            fabKegiatan.hide();
+        }
+
         kepanitiaan();
         return rootView;
     }
@@ -62,6 +81,15 @@ public class NewsFragment extends Fragment {
                         kepanitiaanList.clear();
                         try {
                             kepanitiaanList.addAll(response.body());
+
+                            DBHelper dbHelper = new DBHelper(getContext());
+                            dbHelper.deleteKegiatan();
+
+                            for (Kepanitiaan kepanitiaan:kepanitiaanList){
+                                dbHelper.insertKegiatan(kepanitiaan.getId_kegiatan(), kepanitiaan.getNama_kegiatan(), kepanitiaan.getTanggal_kegiatan(),
+                                        kepanitiaan.getTempat_kegiatan(), kepanitiaan.getDesc_kegiatan(), kepanitiaan.getImage_kegiatan());
+                            }
+
                             setRecycler();
                         } catch (Exception e) {
                             Log.e("error", e.getMessage());
@@ -70,6 +98,7 @@ public class NewsFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<List<Kepanitiaan>> call, Throwable t) {
+                        callFavoriteLocal();
 
                     }
                 });
@@ -85,5 +114,12 @@ public class NewsFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
         recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void callFavoriteLocal() {
+        DBHelper dbHelper = new DBHelper(getContext());
+        kepanitiaanList = dbHelper.selectKegiatan();
+
+        setRecycler();
     }
 }
